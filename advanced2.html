@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Study Routine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .highlight {
+            background-color: #eaf7f8;
+            font-weight: bold;
+        }
+        .note {
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        .author {
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+            color: #2c3e50;
+            font-size: 1.2em;
+        }
+        .checkbox-container label {
+            margin-right: 20px;
+        }
+        .stopwatch {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #stopwatch {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .stopwatch button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        .stopwatch button.stop {
+            background-color: #e74c3c;
+        }
+        .stopwatch button.reset {
+            background-color: #95a5a6;
+        }
+        .warning {
+            color: red;
+            font-weight: bold;
+        }
+        .activity-stopwatch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .activity-stopwatch button {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Study Routine</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Activity</th>
+                    <th>Mark as Start</th>
+                    <th>Stopwatch</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>6:00 AM – 6:30 AM</td>
+                    <td class="highlight">Wake up & Refresh</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="30" data-stopwatch-id="1"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-1">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="1">Start</button>
+                        <button class="reset" data-stopwatch-id="1">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6:30 AM – 8:30 AM</td>
+                    <td class="highlight">Focus on Chapter of the Day</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="120" data-stopwatch-id="2"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-2">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="2">Start</button>
+                        <button class="reset" data-stopwatch-id="2">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8:30 AM – 8:40 AM</td>
+                    <td>10-minute Break</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="10" data-stopwatch-id="3"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-3">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="3">Start</button>
+                        <button class="reset" data-stopwatch-id="3">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8:40 AM – 10:40 AM</td>
+                    <td class="highlight">Focus on Chapter</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="120" data-stopwatch-id="4"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-4">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="4">Start</button>
+                        <button class="reset" data-stopwatch-id="4">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10:40 AM – 10:50 AM</td>
+                    <td>10-minute Break</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="10" data-stopwatch-id="5"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-5">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="5">Start</button>
+                        <button class="reset" data-stopwatch-id="5">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10:50 AM – 12:50 PM</td>
+                    <td class="highlight">Focus on Chapter</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="120" data-stopwatch-id="6"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-6">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="6">Start</button>
+                        <button class="reset" data-stopwatch-id="6">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12:50 PM – 1:30 PM</td>
+                    <td>Lunch Break</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="40" data-stopwatch-id="7"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-7">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="7">Start</button>
+                        <button class="reset" data-stopwatch-id="7">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1:30 PM – 2:30 PM</td>
+                    <td class="highlight">Taking Notes on Chapter</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="60" data-stopwatch-id="8"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-8">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="8">Start</button>
+                        <button class="reset" data-stopwatch-id="8">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2:30 PM – 2:40 PM</td>
+                    <td>10-minute Break</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="10" data-stopwatch-id="9"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-9">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="9">Start</button>
+                        <button class="reset" data-stopwatch-id="9">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2:40 PM – 3:40 PM</td>
+                    <td class="highlight">Taking Notes on Chapter</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="60" data-stopwatch-id="10"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-10">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="10">Start</button>
+                        <button class="reset" data-stopwatch-id="10">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3:40 PM – 4:00 PM</td>
+                    <td>Short Break</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="20" data-stopwatch-id="11"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-11">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="11">Start</button>
+                        <button class="reset" data-stopwatch-id="11">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4:00 PM – 5:00 PM</td>
+                    <td class="highlight">Focus on Chapter</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="60" data-stopwatch-id="12"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-12">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="12">Start</button>
+                        <button class="reset" data-stopwatch-id="12">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5:00 PM – 6:00 PM</td>
+                    <td>Nature Time (Spend time with nature, it’ll heal you)</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="60" data-stopwatch-id="13"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-13">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="13">Start</button>
+                        <button class="reset" data-stopwatch-id="13">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6:00 PM – 7:00 PM</td>
+                    <td>Quick Revision of Day’s Notes</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="60" data-stopwatch-id="14"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-14">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="14">Start</button>
+                        <button class="reset" data-stopwatch-id="14">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7:00 PM – 8:00 PM</td>
+                    <td>Light Review or Prep for Next Day</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="60" data-stopwatch-id="15"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-15">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="15">Start</button>
+                        <button class="reset" data-stopwatch-id="15">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8:00 PM – 9:00 PM</td>
+                    <td>Dinner Break</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="60" data-stopwatch-id="16"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-16">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="16">Start</button>
+                        <button class="reset" data-stopwatch-id="16">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9:00 PM – 10:00 PM</td>
+                    <td>Review Notes</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="60" data-stopwatch-id="17"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-17">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="17">Start</button>
+                        <button class="reset" data-stopwatch-id="17">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10:00 PM – 11:00 PM</td>
+                    <td>Choose Next Day’s Chapter or Research Important Topics</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="60" data-stopwatch-id="18"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-18">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="18">Start</button>
+                        <button class="reset" data-stopwatch-id="18">Reset</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11:00 PM – 11:30 PM</td>
+                    <td>Relax & Wind Down</td>
+                    <td><input type="checkbox" class="activity-checkbox" data-time="30" data-stopwatch-id="19"></td>
+                    <td class="activity-stopwatch">
+                        <span id="stopwatch-19">00:00:00</span>
+                        <button class="startStop" data-stopwatch-id="19">Start</button>
+                        <button class="reset" data-stopwatch-id="19">Reset</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="note">
+            <h2>Why Follow This Routine</h2>
+            <ul>
+                <li><strong>Breaks:</strong> Help prevent boredom and mental fatigue. Short breaks ensure you stay focused and productive throughout your study sessions.</li>
+                <li><strong>Nature Time:</strong> Refreshes and rejuvenates, enhancing overall well-being. Spending time in nature helps reduce stress and improve mental clarity.</li>
+                <li><strong>Note-taking:</strong> Reinforces and helps to consume the concepts effectively. Taking notes aids in understanding and remembering the material more thoroughly.</li>
+                <li><strong>Evening Planning:</strong> Prepares for the next day’s study, ensuring continuity and effective use of time. Choosing the next day's chapter and researching important topics keeps you organized and ready for the upcoming tasks.</li>
+                <li><strong>Focus on One Chapter per Day:</strong> Helps to learn and understand the material more easily without overlapping with other subjects or chapters. This focused approach prevents cognitive overload and improves retention of information.</li>
+                <li><strong>Routine Flexibility:</strong> Feel free to adjust the routine as needed but remember that focusing on one chapter per day is crucial for optimal learning.</li>
+            </ul>
+        </div>
+        
+        <div class="author">
+            <p>Made with love by Moon Light</p>
+        </div>
+    </div>
+
+    <script>
+        let timers = {};
+        let intervals = {};
+
+        function formatTime(seconds) {
+            let hours = Math.floor(seconds / 3600);
+            let minutes = Math.floor((seconds % 3600) / 60);
+            seconds = seconds % 60;
+            return `${format(hours)}:${format(minutes)}:${format(seconds)}`;
+        }
+
+        function format(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        function updateStopwatch(id) {
+            if (!timers[id]) return;
+            let elapsed = Math.floor((Date.now() - timers[id].startTime) / 1000);
+            let timeLeft = timers[id].duration - elapsed;
+            if (timeLeft <= 0) {
+                timeLeft = 0;
+                clearInterval(intervals[id]);
+                timers[id] = null;
+                document.querySelector(`.startStop[data-stopwatch-id="${id}"]`).textContent = 'Start';
+            }
+            document.getElementById('stopwatch-' + id).textContent = formatTime(timeLeft);
+        }
+
+        function startStopwatch(id, duration) {
+            if (timers[id]) return;
+            timers[id] = {
+                startTime: Date.now(),
+                duration: duration
+            };
+            intervals[id] = setInterval(() => updateStopwatch(id), 1000);
+            document.querySelector(`.startStop[data-stopwatch-id="${id}"]`).textContent = 'Stop';
+        }
+
+        document.querySelectorAll('.activity-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                let stopwatchId = this.getAttribute('data-stopwatch-id');
+                if (this.checked && !timers[stopwatchId]) {
+                    let taskTime = parseInt(this.getAttribute('data-time')) * 60;
+                    startStopwatch(stopwatchId, taskTime);
+                } else if (!this.checked) {
+                    clearInterval(intervals[stopwatchId]);
+                    timers[stopwatchId] = null;
+                    document.getElementById('stopwatch-' + stopwatchId).textContent = '00:00:00';
+                    document.querySelector(`.startStop[data-stopwatch-id="${stopwatchId}"]`).textContent = 'Start';
+                }
+            });
+        });
+
+        document.querySelectorAll('.startStop').forEach(button => {
+            button.addEventListener('click', function() {
+                let id = this.getAttribute('data-stopwatch-id');
+                if (timers[id]) {
+                    clearInterval(intervals[id]);
+                    timers[id] = null;
+                    document.getElementById('stopwatch-' + id).textContent = '00:00:00';
+                    this.textContent = 'Start';
+                } else {
+                    let duration = parseInt(document.querySelector(`.activity-checkbox[data-stopwatch-id="${id}"]`).getAttribute('data-time')) * 60;
+                    startStopwatch(id, duration);
+                }
+            });
+        });
+
+        document.querySelectorAll('.reset').forEach(button => {
+            button.addEventListener('click', function() {
+                let id = this.getAttribute('data-stopwatch-id');
+                clearInterval(intervals[id]);
+                timers[id] = null;
+                document.getElementById('stopwatch-' + id).textContent = '00:00:00';
+                document.querySelector(`.startStop[data-stopwatch-id="${id}"]`).textContent = 'Start';
+            });
+        });
+    </script>
+</body>
+</html>
